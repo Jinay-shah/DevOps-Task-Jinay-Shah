@@ -26,7 +26,7 @@ variable "vpc_cidr" {
   type        = string
   # Add regex which will match the cidr format and gives error if it is wrong
   validation {
-    condition     = can(regex("([0-9]{1,3}\.){3}[0-9]{1,3}($|/(16|24))$", var.vpc_cidr))
+    condition     = can(regex("([0-9]{1,3}\.){3}[0-9]{1,3}($|/(8|16|24|32))$", var.vpc_cidr))
     error_message = "The vpc_cidr must be a valid CIDR notation."
   }
 }
@@ -34,6 +34,10 @@ variable "vpc_cidr" {
 variable "subnet_cidrs" {
   description = "A list of CIDR blocks for the subnets."
   type        = list(string)
+   validation {
+    condition     = alltrue([for cidr in var.subnet_cidrs : can(regex("([0-9]{1,3}\.){3}[0-9]{1,3}/(8|16|24|32)$", cidr))])
+    error_message = "Each CIDR block in subnet_cidrs must be a valid CIDR notation."
+  }
 }
 
 variable "service_name" {
@@ -58,4 +62,8 @@ variable "memory" {
 variable "container_port" {
   description = "The port that the container exposes."
   type        = number
+  validation {
+    condition     = var.container_port > 0 && var.container_port <= 65535
+    error_message = "The container port must be between 1 and 65535."
+  }
 }
