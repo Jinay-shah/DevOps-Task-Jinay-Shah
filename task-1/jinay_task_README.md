@@ -1,6 +1,10 @@
 # Cloud Run Deployment with Terraform
 # Deploying a Node.js "Hello World" App to Google Cloud Run using Terraform
 
+## Link to access
+[https://hello-world-service-zwrr7lemvq-ue.a.run.app]( https://hello-world-service-zwrr7lemvq-ue.a.run.app )
+
+
 ## Overview
 
 This contains Terraform configuration files to deploy a simple "Hello World" application to Google Cloud Run. The setup includes creating a Cloud Run service, configuring IAM permissions for public access, and specifying the Docker image to be used.
@@ -22,8 +26,4 @@ This contains Terraform configuration files to deploy a simple "Hello World" app
 8. Then I created my terraform scripts as I mentioned above. 
 9. By applying terraform in gcp console only my service created and running under Cloud Run. 
 
-
-## Link to access
-
-[https://hello-world-service-zwrr7lemvq-ue.a.run.app]( https://hello-world-service-zwrr7lemvq-ue.a.run.app )
 
